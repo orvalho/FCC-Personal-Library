@@ -1,0 +1,72 @@
+<html>
+  <head>
+    <title>Personal Library</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Handlee" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="./public/style.css">
+  </head>
+  <body>
+    <div id="container">
+      <h1>Personal Library</h1>
+      
+      <div class="wrapper">
+        <h2>Description</h2>
+        <p>Keep track of your books, no matter how large your home library has become!</p>
+        <h3>Features of this Personal Library</h3>
+        <ul id="features">
+          <li>add book</li>
+          <li>add comment</li>
+          <li>delete book(s)</li>
+          <li>retrieve book(s)</li>
+        </ul>
+      </div>
+      
+      <div class="wrapper">
+        <h2>Add books, comments, delete books</h2>
+        <form id="newBookForm">
+          <input type="text" id="bookTitleToAdd" name="title" placeholder="New Book Title">
+          <input id="newBook" class="button" type="submit" value="Submit New Book!">
+        </form>
+        <div id="display"></div>          
+        <div id="bookDetail">
+          <p id="detailTitle">Select a book to see it's details and comments</p>
+          <ol id="detailComments"></ol>
+        </div>
+        <button id="deleteAllBooks">Delete all books...</button>
+      </div>
+      
+      <div class="wrapper">     
+        <h2 id="retrieve">Retrieve books</h2>
+        <p>You can retrieve a list of all books or just information about a single book.</p>
+        <h3>API call</h3>
+        <h4>get all books</h4>
+        <span><a href="https://opalescent-rhythm.glitch.me/api/books">/api/books</a></span>
+        <h4>get specific book</h4>
+        <span>/api/books/_id</span>
+        <h3>Example Output</h3>
+        <h4>all books</h4>
+        <span>[{"_id":"5cc8491bf1db34007cc7f536","title":"Clean Code: A Handbook of Agile Software Craftsmanship by Robert C. Martin","commentcount":2},{"_id":"5cc8496ef1db34007cc7f537","title":"Soft Skills: The software developer's life manual by John Sonmez","commentcount":1},{"_id":"5cc849c0f1db34007cc7f538","title":"Cracking the Coding Interview: 189 Programming Questions and Solutions by Gayle Laakmann McDowell","commentcount":0}]</span>
+        <h4>specific book</h4>
+        <span>{"_id":"5cc8491bf1db34007cc7f536","title":"Clean Code: A Handbook of Agile Software Craftsmanship by Robert C. Martin","comments":["great book","need to reread"]}</span>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"
+            integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00="
+            crossorigin="anonymous"></script>
+    <script src="/public/client.js"></script>           
+    <script>
+      /*
+      *  For #sampleposting to update form action url to test inputs book id
+      */
+      $(function() {
+       $('#commentTest').submit(function(){
+         var id = $('#idinputtest').val();
+         $(this).attr('action', "/api/books/" + id);
+       });
+      });
+   </script>
+  </body>
+</html>
